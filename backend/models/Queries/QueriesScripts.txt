@@ -1,0 +1,12 @@
+query{
+  persons{
+  	persons{
+      _id
+      firstName
+      patternLastName
+      matternLastName
+      address
+      phoneNumber
+    }
+  }
+}

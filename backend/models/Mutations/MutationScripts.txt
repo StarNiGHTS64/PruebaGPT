@@ -1,0 +1,15 @@
+mutation {
+  createPerson(personInput:{
+    firstName: "Carlos",
+    patternLastName: "Becerra",
+    matternLastName: "Ortiz",
+    address: "Sierra"
+    phoneNumber: "444-444-4444"
+  }) {
+    firstName
+    patternLastName
+    matternLastName
+    address
+    phoneNumber
+  }
+}
