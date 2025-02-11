@@ -31,6 +31,34 @@ module.exports = {
     },
 
     updatePerson: async function({ id, personInput}) {
-        //const person
+        const person = await Person.findById(id);
+        console.log(person.firstName);
+        console.log(personInput.firstName);
+        if(!person) {
+            throw new Error('No Person Found!')
+        }
+        person.firstName = personInput.firstName;
+        person.patternLastName = personInput.patternLastName;
+        person.matternLastName = personInput.matternLastName;
+        person.address = personInput.address;
+        person.phoneNumber = personInput.phoneNumber;
+
+        const updatedPerson = await person.save();
+        return {
+            ...updatedPerson._doc,
+            _id: updatedPerson._id.toString(),
+        }
+    },
+
+    deletePerson: async function({id}) {
+        const person = await Person.findById(id)
+        if(!person) {
+            throw new Error('No Person Found!')
+        }
+        await Person.findByIdAndDelete(id);
+        return {
+            ...person._doc,
+            _id: person._id.toString(),
+        }
     }
 }

@@ -41,6 +41,20 @@ const CREATE_PERSON = gql`
       phoneNumber
     }
   }
+`;
+
+const DELETE_PERSON = gql`
+  mutation deletePerson($id: ID!){
+    deletePerson(id: $id){
+      _id
+      firstName
+      patternLastName
+      matternLastName
+      address
+      phoneNumber
+
+    }
+  }
 `
 
 @Component({
@@ -79,9 +93,23 @@ export class AppComponent implements OnInit {
         matternLastName: matternLastName,
         address: address,
         phoneNumber: phoneNumber
-      }
+      },
     }).subscribe(() => {
       console.log("Created");
     });
   }
+
+  deletePerson(id: string) {
+    console.log(id);
+    this.apollo.mutate({
+      mutation: DELETE_PERSON,
+      refetchQueries: [{query: GET_PERSONS}],
+      variables: {
+        id:id
+      },
+    }).subscribe(() => {
+      console.log("Deleted");
+    });
+  }
+
 }

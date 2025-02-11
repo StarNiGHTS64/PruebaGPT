@@ -13,12 +13,12 @@ phoneNumber: <input #phoneNumber type="text">
   phoneNumber.value
   )">Register</button>
 
-<h1>Tabla de Personas</h1>
+<h1>Person Table</h1>
 <ul>
     <li *ngFor="let person of persons | async">
       {{person.firstName}}, {{person.patternLastName}}
       <!-- button (click)="reviewPerson()"></button --->
       <!-- button (click)="updatePerson()"></button --->
-      <!-- button (click)="deletePerson()"></button --->
+      <button (click)="deletePerson(person._id)">Delete</button>
     </li>
 </ul>

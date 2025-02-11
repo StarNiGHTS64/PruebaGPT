@@ -25,6 +25,7 @@ module.exports = buildSchema(`
     type RootMutation {
         createPerson(personInput: PersonInputData): Person!
         updatePerson(id: ID!, personInput: PersonInputData): Person!
+        deletePerson(id: ID!): Person!
     }
     schema{
         query: RootQuery

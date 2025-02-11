@@ -13,3 +13,31 @@ mutation {
     phoneNumber
   }
 }
+
+mutation {
+  updatePerson(id:"67abc57121da7153a6f69023", personInput:{
+    firstName: "Carlos",
+    patternLastName: "Becerra",
+    matternLastName: "Ortiz",
+    address: "Sierra"
+    phoneNumber: "444-444-4444"
+  }) {
+    firstName
+    patternLastName
+    matternLastName
+    address
+    phoneNumber
+  }
+}
+
+mutation {
+  updatePerson(id:"67aba503cca74849b7f0810c", personInput:{
+    firstName: "li",
+    patternLastName: "Becerra",
+    matternLastName: "Ortiz",
+    address: "Sierra"
+    phoneNumber: "444-444-4444"
+  }) {
+    patternLastName
+  }
+}
