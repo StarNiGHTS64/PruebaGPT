@@ -14,6 +14,7 @@ module.exports = {
     },
 
     createPerson: async function({ personInput }) {
+        console.log('s')
         const person = new Person({
             firstName: personInput.firstName,
             patternLastName: personInput.patternLastName,
@@ -27,5 +28,9 @@ module.exports = {
             ...createdPerson._doc,
             id: createdPerson._id.toString(),
         }
+    },
+
+    updatePerson: async function({ id, personInput}) {
+        //const person
     }
 }
