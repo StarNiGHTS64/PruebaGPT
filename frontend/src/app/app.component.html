@@ -18,7 +18,15 @@ phoneNumber: <input #phoneNumber type="text">
     <li *ngFor="let person of persons | async">
       {{person.firstName}}, {{person.patternLastName}}
       <!-- button (click)="reviewPerson()"></button --->
-      <!-- button (click)="updatePerson()"></button --->
+      <button (click)="updatePerson(
+        person._id,
+        firstName.value,
+        patternLastName.value,
+        matternLasttName.value,
+        address.value,
+        phoneNumber.value
+        )">Update</button>
+
       <button (click)="deletePerson(person._id)">Delete</button>
     </li>
 </ul>

@@ -3,59 +3,11 @@ import { Apollo, gql} from 'apollo-angular';
 
 import { Observable, map } from 'rxjs';
 
-const GET_PERSONS = gql`
-  {
-  persons{
-  	persons{
-      _id
-      firstName
-      patternLastName
-      matternLastName
-      address
-      phoneNumber
-    }
-  }
-}
-`;
+import { PersonInput } from './models/person.model';
+import { CREATE_PERSON, DELETE_PERSON, UPDATE_PERSON } from './graphql/mutations';
+import { GET_PERSONS } from './graphql/queries';
 
-const CREATE_PERSON = gql`
-  mutation createPerson(
-    $firstName: String!,
-    $patternLastName: String!,
-    $matternLastName: String!,
-    $address: String!,
-    $phoneNumber: String!
-  ){
-    createPerson(personInput: { 
-    firstName: $firstName, 
-    patternLastName: $patternLastName,
-    matternLastName: $matternLastName,
-    address: $address,
-    phoneNumber: $phoneNumber
-    }) {
-      _id
-      firstName
-      patternLastName
-      matternLastName
-      address
-      phoneNumber
-    }
-  }
-`;
 
-const DELETE_PERSON = gql`
-  mutation deletePerson($id: ID!){
-    deletePerson(id: $id){
-      _id
-      firstName
-      patternLastName
-      matternLastName
-      address
-      phoneNumber
-
-    }
-  }
-`
 
 @Component({
   selector: 'app-root',
@@ -109,6 +61,24 @@ export class AppComponent implements OnInit {
       },
     }).subscribe(() => {
       console.log("Deleted");
+    });
+  }
+
+  updatePerson(id: string, firstName: string, patternLastName: string, matternLastName: string, address: string, phoneNumber: string){
+    console.log(id, firstName, patternLastName, matternLastName, address, phoneNumber);
+    this.apollo.mutate({
+      mutation: UPDATE_PERSON,
+      refetchQueries: [{query: GET_PERSONS}],
+      variables: {
+        id: id,
+        firstName: firstName, 
+        patternLastName: patternLastName,
+        matternLastName: matternLastName,
+        address: address,
+        phoneNumber: phoneNumber
+      },
+    }).subscribe(() => {
+      console.log("Updated");
     });
   }
 

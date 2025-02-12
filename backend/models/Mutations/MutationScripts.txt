@@ -31,13 +31,12 @@ mutation {
 }
 
 mutation {
-  updatePerson(id:"67aba503cca74849b7f0810c", personInput:{
-    firstName: "li",
-    patternLastName: "Becerra",
-    matternLastName: "Ortiz",
-    address: "Sierra"
-    phoneNumber: "444-444-4444"
-  }) {
+  deletePerson(id: "67aba503cca74849b7f0810c"){
+    _id
+    firstName
     patternLastName
+    matternLastName
+    address
+    phoneNumber
   }
 }
